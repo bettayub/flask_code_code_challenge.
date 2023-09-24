@@ -22,7 +22,7 @@ class Pizzas(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
                             
                 
-#Adding class Restaurants
+#Adding class Restaurants_Pizzas
 class Restaurant_pizzas(db.Model):
     id = db.Column(db.Integer,primary_key =True)
     pizza_id = db.Column(db.Integer, nullable=False)
@@ -32,3 +32,9 @@ class Restaurant_pizzas(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
          
 
+#Adding class Restaurants
+class Restaurants(db.Model):
+    id = db.Column(db.Integer,primary_key =True)
+    name = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(70), nullable=False)
+    
