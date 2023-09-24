@@ -38,3 +38,6 @@ class Restaurants(db.Model):
     name = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(70), nullable=False)
     
+# Create database tables within the app context.
+with app.app_context():
+    db.create_all()
