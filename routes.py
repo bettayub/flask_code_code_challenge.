@@ -107,3 +107,11 @@ def create_restaurant_pizza():
 
     db.session.add(new_restaurant_pizza)
     db.session.commit()
+    
+    
+    # Return the pizza details
+    return jsonify({
+        'id': pizza.id,
+        'name': pizza.name,
+        'ingredients': pizza.ingredients
+    })
