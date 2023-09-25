@@ -115,3 +115,8 @@ def create_restaurant_pizza():
         'name': pizza.name,
         'ingredients': pizza.ingredients
     })
+    
+    
+#starting  the Flask development server in debug mode
+if __name__ == '__main__':
+    app.run(debug=True)
