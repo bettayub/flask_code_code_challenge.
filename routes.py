@@ -78,3 +78,32 @@ def get_pizzas():
         }
         pizza_list.append(pizza_data)
     return jsonify(pizza_list)
+
+# model routes function for restaurants_Pizzas
+
+@app.route('/restaurant_pizzas', methods=['POST'])
+def create_restaurant_pizza():
+    data = request.json
+    pizza_id = data.get('pizza_id')
+    restaurant_id = data.get('restaurant_id')
+    price = data.get('price')
+
+    if not pizza_id or not restaurant_id or not price:
+        return jsonify({'errors': ['validation errors']}), 400
+
+    # Check if the Pizza and Restaurant exist
+    pizza = Pizza.query.get(pizza_id)
+    restaurant = Restaurant.query.get(restaurant_id)
+
+    if not pizza or not restaurant:
+        return jsonify({'errors': ['validation errors']}), 400
+
+    # Create a new RestaurantPizza
+    new_restaurant_pizza = RestaurantPizza(
+        pizza_id=pizza_id,
+        restaurant_id=restaurant_id,
+        price=price
+    )
+
+    db.session.add(new_restaurant_pizza)
+    db.session.commit()
