@@ -61,3 +61,20 @@ def delete_restaurant(id):
         return '', 204
     else:
         return jsonify({'error': 'Restaurant not found'}), 404
+
+
+
+# model routes function for Pizzas 
+
+@app.route('/pizzas', methods=['GET'])
+def get_pizzas():
+    pizzas = Pizza.query.all()
+    pizza_list = []
+    for pizza in pizzas:
+        pizza_data = {
+            'id': pizza.id,
+            'name': pizza.name,
+            'ingredients': pizza.ingredients
+        }
+        pizza_list.append(pizza_data)
+    return jsonify(pizza_list)
